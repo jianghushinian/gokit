@@ -11,7 +11,7 @@ var (
 	CodeUnauthorized = NewAPICode(40100000, "认证失败")
 	CodeForbidden    = NewAPICode(40300000, "授权失败")
 	CodeNotFound     = NewAPICode(40400000, "资源未找到")
-	CodeUnknownError = NewAPICode(50000000, "系统错误")
+	CodeUnknownError = NewAPICode(50000000, "系统错误", "https://github.com/jianghushinian/gokit/tree/main/errors")
 )
 
 type APICoder interface {
