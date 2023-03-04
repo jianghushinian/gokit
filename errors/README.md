@@ -156,4 +156,16 @@ func main() {
 }
 ```
 
+#### 错误返回结果
+
+```json
+{
+	"code": 40400000,
+	"message": "资源未找到",
+	"reference": "https://jianghushinian.cn"
+}
+```
+
+上述错误返回结果中 `code` 表示错误码，`message` 表示错误信息，`reference` 为可选的解决错误的文档地址。
+
 更多使用详情请参考 [examples](./examples)。
