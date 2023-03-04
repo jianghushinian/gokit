@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -54,7 +55,7 @@ func ShowAccount(c *gin.Context) {
 		case errors.Is(err, ErrAccountNotFound):
 			err = apierr.NewAPIError(apierr.CodeNotFound, err)
 		case errors.Is(err, ErrDatabase):
-			err = apierr.NewAPIError(apierr.CodeUnknownError, err)
+			err = apierr.NewAPIError(apierr.CodeUnknownError, fmt.Errorf("account %d: %w", aid, err))
 		}
 		ResponseError(c, err)
 		return
