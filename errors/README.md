@@ -78,6 +78,25 @@ var (
 	ErrDatabase        = errors.New("database error")
 )
 
+func ResponseOK(c *gin.Context, spec interface{}) {
+	if spec == nil {
+		c.Status(http.StatusNoContent)
+		return
+	}
+	c.JSON(http.StatusOK, spec)
+}
+
+func ResponseError(c *gin.Context, err error) {
+	log(err)
+	e := apierr.ParseCoder(err)
+	httpStatus := e.HTTPStatus()
+	if httpStatus >= 500 {
+		// send error msg to email/feishu/sentry...
+		go fakeSendErrorEmail(err)
+	}
+	c.AbortWithStatusJSON(httpStatus, err)
+}
+
 type Account struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
