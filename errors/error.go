@@ -6,6 +6,8 @@ import (
 	"io"
 )
 
+var WrapC = NewAPIError
+
 func NewAPIError(coder APICoder, cause ...error) error {
 	var c error
 	if len(cause) > 0 {

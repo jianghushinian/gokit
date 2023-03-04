@@ -45,6 +45,9 @@ func TestNewAPIError(t *testing.T) {
 			if err := NewAPIError(tt.args.coder, tt.args.cause...); err.Error() != tt.want.Error() {
 				t.Errorf("NewAPIError() = %v, wantErr %v", err.Error(), tt.want.Error())
 			}
+			if err := WrapC(tt.args.coder, tt.args.cause...); err.Error() != tt.want.Error() {
+				t.Errorf("WrapC() = %v, wantErr %v", err.Error(), tt.want.Error())
+			}
 		})
 	}
 }

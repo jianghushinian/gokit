@@ -44,7 +44,7 @@ func ShowAccount(c *gin.Context) {
 	aid, err := strconv.Atoi(id)
 	if err != nil {
 		// 将 errors 包装成 APIError 返回
-		ResponseError(c, apierr.NewAPIError(apierr.CodeBadRequest, err))
+		ResponseError(c, apierr.WrapC(apierr.CodeBadRequest, err))
 		return
 	}
 
