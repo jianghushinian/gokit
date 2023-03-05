@@ -2,6 +2,10 @@
 
 一个支持业务错误码的错误包，适用于 Web API 错误处理。
 
+## 文档
+
+[如何规范 RESTful API 的业务错误处理](https://jianghushinian.cn/2023/03/04/how-to-standardize-the-handling-of-restful-api-business-errors/)
+
 ## 错误码
 
 业务错误码由 8 位纯数字组成，类型为 `int`。
@@ -156,7 +160,7 @@ func main() {
 }
 ```
 
-#### 错误返回结果
+### 错误返回结果
 
 ```json
 {
