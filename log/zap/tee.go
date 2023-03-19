@@ -1,4 +1,4 @@
-package log
+package zap
 
 import (
 	"io"
@@ -19,15 +19,12 @@ type TeeOption struct {
 func NewTee(tees []TeeOption, opts ...Option) *Logger {
 	var cores []zapcore.Core
 	for _, tee := range tees {
-		lvl := zap.LevelEnablerFunc(func(level zapcore.Level) bool {
-			return tee.LevelEnablerFunc(level)
-		})
 		cfg := zap.NewProductionEncoderConfig()
 		cfg.EncodeTime = zapcore.RFC3339TimeEncoder
 		core := zapcore.NewCore(
 			zapcore.NewJSONEncoder(cfg),
 			zapcore.AddSync(tee.Out),
-			lvl,
+			zap.LevelEnablerFunc(tee.LevelEnablerFunc),
 		)
 		cores = append(cores, core)
 	}

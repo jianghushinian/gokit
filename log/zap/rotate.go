@@ -1,4 +1,4 @@
-package log
+package zap
 
 import (
 	"io"
@@ -50,8 +50,9 @@ func NewProductionRotateConfig(filename string) *RotateConfig {
 
 func NewRotateByTime(cfg *RotateConfig) io.Writer {
 	opts := []rotatelogs.Option{
-		rotatelogs.WithMaxAge(time.Duration(cfg.MaxAge) * time.Second * 5),
+		rotatelogs.WithMaxAge(time.Duration(cfg.MaxAge) * time.Hour * 24),
 		rotatelogs.WithRotationTime(cfg.RotationTime),
+		rotatelogs.WithLinkName(cfg.Filename),
 	}
 	if !cfg.LocalTime {
 		rotatelogs.WithClock(rotatelogs.UTC)
