@@ -20,6 +20,7 @@ func main() {
 		log.Warn("Warn msg", log.Int("attempt", 3))
 		log.Error("Error msg", log.Duration("backoff", time.Second))
 
+		// 修改日志级别
 		log.SetLevel(log.ErrorLevel)
 		log.Info("Info msg")
 		log.Warn("Warn msg")
@@ -57,7 +58,7 @@ func main() {
 		logger.Fatal("Fatal msg", log.Time("val", time.Now()))
 	}
 
-	// 不同日志级别输出到不同位置
+	// 不同级别日志输出到不同位置
 	{
 		file, _ := os.OpenFile("test-warn.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 		tees := []log.TeeOption{

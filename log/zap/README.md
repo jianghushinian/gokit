@@ -4,7 +4,9 @@
 
 ## 文档
 
-[Go 第三方 log 库之 zap 使用](https://jianghushinian.cn/2023/03/19/use-of-zap-in-go-third-party-log-library/)
+- [Go 第三方 log 库之 zap 使用](https://jianghushinian.cn/2023/03/19/use-of-zap-in-go-third-party-log-library/)
+
+- [如何基于 zap 封装一个更好用的日志库](https://jianghushinian.cn/2023/04/16/how-to-wrap-a-more-user-friendly-logging-package-based-on-zap/)
 
 ## 特性
 
@@ -33,6 +35,7 @@ func main() {
 	log.Warn("Warn msg", log.Int("attempt", 3))
 	log.Error("Error msg", log.Duration("backoff", time.Second))
 
+	// 修改日志级别
 	log.SetLevel(log.ErrorLevel)
 	log.Info("Info msg")
 	log.Warn("Warn msg")
@@ -129,7 +132,7 @@ Fatal Hook: msg=Fatal msg, field=[{Key:val Type:16 Integer:1679234545108924000 S
 {"level":"fatal","ts":"2023-03-19T22:02:25+08:00","caller":"examples/main.go:57","msg":"Fatal msg","val":"2023-03-19T22:02:25+08:00"}
 ```
 
-### 不同日志级别输出到不同位置
+### 不同级别日志输出到不同位置
 
 `Info` 级别日志输出到 `os.Stdout`，`Warn` 级别日志输出到 `test-warn.log`，其他级别日志不会输出。
 
